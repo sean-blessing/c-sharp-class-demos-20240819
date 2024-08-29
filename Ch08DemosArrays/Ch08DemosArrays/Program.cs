@@ -1,11 +1,13 @@
-﻿namespace Ch08DemosArrays {
+﻿using System.Collections;
+
+namespace Ch08DemosArrays {
     internal class Program {
         static void Main(string[] args) {
             Console.WriteLine("Welcome to Chapter 8- Arrays and Collections!");
 
             // p. 230 One Dimensional Arrays
             // p. 231 Basic Array Demos
-            string[] names = { "Sean", "Brandon", "Chris", "Holly", "Sarika", "Brendan", "Graham", "Graydon"};
+            string[] names = { "Sean", "Brandon", "Chris", "Holly", "Sarika", "Brendan", "Graham", "Graydon" };
             int[] numbers = new int[10];
             Console.WriteLine($"names: {names}");
             Console.WriteLine($"numbers: {numbers}");
@@ -30,7 +32,7 @@
 
             // loop through numbers array, print each #, and add it to a total
             int total = 0;
-            for ( int i = 0; i < numbers.Length; i++ ) {
+            for (int i = 0; i < numbers.Length; i++) {
                 Console.WriteLine($"i:{i} - numbers[{i}] = {numbers[i]}");
                 total += numbers[i];
             }
@@ -38,12 +40,12 @@
 
             // p. 237 For each loop
             // loop through names, printing each name
-            foreach ( string name in names ) {
+            foreach (string name in names) {
                 Console.WriteLine(name);
             }
 
             // Add a new name to our names array - Denise
-            for ( int i = 0;i < names.Length;i++ ) {
+            for (int i = 0; i < names.Length; i++) {
                 Console.WriteLine($"names[{i}]: {names[i]}");
             }
 
@@ -52,37 +54,50 @@
 
             // p. 239 Rectangular Arrays
             // create 2x2 array of our names w/ a header
-            string[,] namesTable = new string[9,2];
-            namesTable[0, 0] = "First";
-            namesTable[0, 1] = "Last";
-            namesTable[1, 0] = "Sean";
-            namesTable[1, 1] = "Blessing";
-            namesTable[2, 0] = "Chris";
-            namesTable[2, 1] = "Silver";
-            namesTable[3, 0] = "Brandon";
-            namesTable[3, 1] = "Moore";
-            namesTable[4, 0] = "Graham";
-            namesTable[4, 1] = "Arnett";
-            namesTable[5, 0] = "Sarika";
-            namesTable[5, 1] = "Srivestava";
-            namesTable[6, 0] = "Gradon";
-            namesTable[6, 1] = "Kappes";
-            namesTable[7, 0] = "Holly";
-            namesTable[7, 1] = "Hoffman";
-            namesTable[8, 0] = "Brendan";
-            namesTable[8, 1] = "Keam";
+            //string[,] namesTable = new string[9,2];
+            //namesTable[0, 0] = "First";
+            //namesTable[0, 1] = "Last";
+            //namesTable[1, 0] = "Sean";
+            //namesTable[1, 1] = "Blessing";
+            //namesTable[2, 0] = "Chris";
+            //namesTable[2, 1] = "Silver";
+            //namesTable[3, 0] = "Brandon";
+            //namesTable[3, 1] = "Moore";
+            //namesTable[4, 0] = "Graham";
+            //namesTable[4, 1] = "Arnett";
+            //namesTable[5, 0] = "Sarika";
+            //namesTable[5, 1] = "Srivestava";
+            //namesTable[6, 0] = "Gradon";
+            //namesTable[6, 1] = "Kappes";
+            //namesTable[7, 0] = "Holly";
+            //namesTable[7, 1] = "Hoffman";
+            //namesTable[8, 0] = "Brendan";
+            //namesTable[8, 1] = "Keam";
 
-            for (int i = 0; i < namesTable.GetLength(0); i++) {
-                for (int j = 0; j < namesTable.GetLength(1); j++) {
-                    //Console.WriteLine($"namesTable[{i},{j}]: {namesTable[i, j]}");
-                    Console.Write($"{namesTable[i, j]}\t");
-                }
-                Console.WriteLine();
-            }
+            //for (int i = 0; i < namesTable.GetLength(0); i++) {
+            //    for (int j = 0; j < namesTable.GetLength(1); j++) {
+            //        //Console.WriteLine($"namesTable[{i},{j}]: {namesTable[i, j]}");
+            //        Console.Write($"{namesTable[i, j]}\t");
+            //    }
+            //    Console.WriteLine();
+            //}
 
             // p. 241 Working with the Numbers Array
 
             // p. 243 Arrays Class
+            // sort an array
+            // order names alphabetically
+
+            Array.Sort(names);
+            Console.WriteLine("--- sorted names ---");
+            foreach (string name in names) {
+                Console.WriteLine(name);
+            }
+
+            // finding the index position of a value
+
+            Console.WriteLine($"position of Graham: {Array.BinarySearch(names, "Graham")}");
+
 
             // p. 245 Reference to an Array
 
@@ -95,6 +110,31 @@
             // p. 253 List patterns
 
             // p. 257 Collections
+            // untyped collection
+            ArrayList things = new ArrayList();
+            things.Add(2);
+            things.Add("test");
+
+            foreach (var item in things) {
+                Console.WriteLine(item);
+            }
+
+            //typed collection
+            List<string> movieTitles = new List<string>();
+            movieTitles.Add("Star Wars Ep IV - A New Hope");
+            movieTitles.Add("Pulp Fiction");
+            movieTitles.Add("Kill Bill");
+            movieTitles.Add("Shawshank Redemption");
+
+            Console.WriteLine("-----------");
+            PrintMovies(movieTitles);
+
+            movieTitles.Insert(2, "Test Movie");
+            PrintMovies(movieTitles);
+
+            movieTitles.RemoveAt(2);
+            PrintMovies(movieTitles);
+
 
             // p. 259 List implementations
 
@@ -109,6 +149,13 @@
             // p. 269 Using ArrayLists
 
             Console.WriteLine("Bye");
+        }
+
+        private static void PrintMovies(List<string> movieTitles) {
+            foreach (string mt in movieTitles) {
+                Console.WriteLine(mt);
+            }
+            Console.WriteLine("-----------");
         }
     }
 }
