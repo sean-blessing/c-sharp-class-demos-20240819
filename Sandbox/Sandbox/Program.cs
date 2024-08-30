@@ -49,6 +49,8 @@ namespace Sandbox {
 
             List<int> numbers = new List<int>();
 
+            Product p1 = new Product();
+
             Console.WriteLine("bye");
         }
 
