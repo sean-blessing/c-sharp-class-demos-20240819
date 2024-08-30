@@ -15,6 +15,7 @@ namespace Proj08MoviesArray {
                 rating: "R", director: "Adam McKay");
             var hgMovie = (id: 5, title: "Happy Gilmore", year: 1996,
                 rating: "PG-13", director: "Dennis Dugan");
+            //var newMovie = (title: "New Movie", runTime: 109);
 
             var movies = new[] {swMovie, btfMovie, wcMovie, sbMovie, hgMovie };
 
