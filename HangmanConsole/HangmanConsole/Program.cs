@@ -21,23 +21,49 @@ namespace HangmanConsole {
                     Console.WriteLine($"letters guessed: {GetLettersGuessedString(lettersGuessed)}");
                     Console.WriteLine("===========================================");
                     string letterGuess = PromptInput("Enter a Letter: ");
-                    // if letterGuess is NOT in lettersGuessed:
-                    // -- is letterGuess in word?
-                    //    -- update hiddenWord w/ letterGuess
-                    //    -- Check hiddenWord - if no underscores remain:
-                    //       -- wordGuessed = true
-                    // -- else
-                    //    -- increment incorrectGuesses by 1
-                    // else 
-                    // -- Display a message (letter already guessed, try again)
+                    if (lettersGuessed.IndexOf(letterGuess) < 0) {
+                        lettersGuessed.Add(letterGuess);
+                        if (word.IndexOf(letterGuess) >= 0) {
+                            hiddenWord = UpdateHiddenWord(word, hiddenWord, Char.Parse(letterGuess));
+                            if (hiddenWord.IndexOf('_') < 0) {
+                                wordGuessed = true;
+                            }
+                        }
+                        else {
+                            incorrectGuesses++;
+                        }
+                    }
+                    else {
+                        Console.WriteLine("Letter already guessed, try again.");
+                    }
                 }
-                // Display win or loss message
-                // - Display the hangman image?
-                // - Display the word?
-
+                if (wordGuessed) {
+                    Console.WriteLine("You won!");
+                    Console.WriteLine($"The word was '{words.DisplayHiddenWord(hiddenWord)}'");
+                }
+                else {
+                    Console.WriteLine(GetHangmanImage(incorrectGuesses));
+                    Console.WriteLine("You lost. Sorry, try again.");
+                    Console.WriteLine($"The word was '{word}'.");
+                }
                 choice = PromptInput("Play again? ");
             }
             Console.WriteLine("Bye");
+        }
+
+        private static string UpdateHiddenWord(string word, string hiddenWord, char letterGuess) {
+            // accepting hiddenWord (underscoredVersion of word)
+            // we know the letterGuess exists in word
+            // loop through word, find the index positions where the letterGuess occurs
+            //   - then change hiddenWord, at those index positions, to replace that indexposition with letterGuess
+            char[] wordCharArray = word.ToCharArray();
+            char[] hiddenWordCharArray = hiddenWord.ToCharArray();
+            for (int i = 0; i < wordCharArray.Length; i++) {
+                if (wordCharArray[i] == letterGuess) {
+                    hiddenWordCharArray[i] = letterGuess;
+                }
+            }
+            return new string(hiddenWordCharArray);
         }
 
         private static string PromptInput(string prompt) {
