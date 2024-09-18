@@ -3,9 +3,14 @@ using System.Collections.Generic;
 
 namespace Sandbox {
     internal class Program {
+        // 9/17 readonly
+        static readonly int MONTH = 9;
+        int day = 17;
         static void Main(string[] args) {
             Console.WriteLine("Welcome to my sandbox. Let's play!");
 
+            //MONTH = 10;
+            
             // Holly question 8/27 int vs Int32
             int a = 5;
             Int32 b = 20;
