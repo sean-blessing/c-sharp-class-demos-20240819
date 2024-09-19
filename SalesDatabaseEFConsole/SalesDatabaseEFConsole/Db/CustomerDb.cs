@@ -19,7 +19,7 @@ namespace SalesDatabaseEFConsole.Db {
         }
 
         public Customer GetById(int id) {
-            return dbContext.Customers.Where(m => m.Id == id).FirstOrDefault(); ;
+            return dbContext.Customers.Where(c => c.Id == id).FirstOrDefault(); ;
         }
 
         public void Update(Customer t) {

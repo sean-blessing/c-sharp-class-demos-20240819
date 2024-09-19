@@ -19,4 +19,8 @@ public partial class Region
 
     [InverseProperty("Region")]
     public virtual ICollection<SalesPerson> SalesPeople { get; set; } = new List<SalesPerson>();
+
+    public override string ToString() {
+        return $"Region - Id: {Id}, Name: {Name}";
+    }
 }
