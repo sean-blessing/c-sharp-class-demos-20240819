@@ -94,9 +94,18 @@ namespace BmdbWebApiEf.Controllers
             return NoContent();
         }
 
+        // Actors find by age and gender... ex:males born since 1980
+        [HttpGet("gender/age")]
+        public async Task<List<Actor>> FindActorsByGenderAndAge(string gender, int year) {
+
+            var actors = await _context.Actors.Where(a => a.Gender == gender && a.Birthdate.Year >= year).ToListAsync();
+            return actors;
+        }
+
         private bool ActorExists(int id)
         {
             return _context.Actors.Any(e => e.Id == id);
         }
+
     }
 }
