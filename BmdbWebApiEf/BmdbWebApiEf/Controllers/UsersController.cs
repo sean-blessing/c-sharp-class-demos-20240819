@@ -100,7 +100,7 @@ namespace BmdbWebApiEf.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<User>> Login() {
+        public async Task<ActionResult<User>> Login(UserLogin userLogin) {
             // call the database - verify username and pwd exists
             // SELECT * FROM[User] WHERE Username = 'hgilmore' AND Password = 'pwd';
             var user = await _context.Users
