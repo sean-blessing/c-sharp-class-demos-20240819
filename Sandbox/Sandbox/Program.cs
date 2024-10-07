@@ -3,10 +3,17 @@ using System.Collections.Generic;
 
 namespace Sandbox {
     internal class Program {
+
+
+
         // 9/17 readonly
         static readonly int MONTH = 9;
         int day = 17;
         static void Main(string[] args) {
+            // 10/1/24 Compare int w/ Java
+            int nbr1 = 7;
+
+            Console.WriteLine(nbr1.ToString());
             Console.WriteLine("Welcome to my sandbox. Let's play!");
 
             //MONTH = 10;
